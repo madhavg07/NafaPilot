@@ -1,0 +1,12 @@
+{
+ "error_code": "insufficient_data",
+ "message": "Too few eligible customers: 80 treatment / 20 holdout; at least 30 per group are needed.",
+ "details": {
+  "eligible": 1109,
+  "treatment": 80,
+  "holdout": 20,
+  "excluded": {
+   "anonymous_orders_without_customer_id_last_28_days": 774
+  }
+ }
+}

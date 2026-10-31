@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    container_name: nafapilot-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nafapilot}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nafapilot}
+      POSTGRES_DB: ${POSTGRES_DB:-nafapilot}
+    ports:
+      - "5432:5432"
+    volumes:
+      - nafapilot_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nafapilot}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  nafapilot_pgdata:

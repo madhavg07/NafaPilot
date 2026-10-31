@@ -1,0 +1,7 @@
+{
+ "error_code": "not_approved",
+ "message": "This version has no merchant approval; it cannot be executed.",
+ "details": {
+  "decision": null
+ }
+}

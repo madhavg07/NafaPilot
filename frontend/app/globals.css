@@ -1,0 +1,193 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans/index.css";
+
+/*
+  Design tokens. Friendly fintech palette: cool light canvas, white cards, teal "growth"
+  brand. Colour also carries meaning:
+    gain / loss  = money made / lost, verdicts
+    pred         = predictions (forecasts)          amber
+    sim          = simulated results                violet
+    est          = statistical estimates            blue
+    notice       = "we noticed something"           amber
+*/
+:root {
+  --paper: #f3f6fb;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --ink: #0f172a;
+  --ink-2: #475569;
+  --ink-3: #8592a6;
+  --rule: #e4e9f1;
+  --rule-strong: #cbd5e1;
+  --brand: #0f766e;
+  --brand-2: #10b981;
+  --brand-wash: #e6f6f2;
+  --gain: #047857;
+  --gain-wash: #e7f7ef;
+  --loss: #c2410c;
+  --loss-strong: #dc2626;
+  --loss-wash: #fdeeea;
+  --pred: #b45309;
+  --pred-wash: #fef4e2;
+  --sim: #6d28d9;
+  --sim-wash: #f1ebfe;
+  --est: #2563eb;
+  --est-wash: #e8f0fe;
+  --focus: #0f766e;
+  --shadow: 0 1px 2px rgb(15 23 42 / 0.05), 0 4px 16px rgb(15 23 42 / 0.05);
+  --shadow-lg: 0 2px 4px rgb(15 23 42 / 0.06), 0 12px 32px rgb(15 23 42 / 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0b1220;
+    --surface: #111a2c;
+    --surface-2: #0f1727;
+    --ink: #e8edf6;
+    --ink-2: #b2bdd0;
+    --ink-3: #7d8aa3;
+    --rule: #1e2a40;
+    --rule-strong: #33415c;
+    --brand: #2dd4bf;
+    --brand-2: #34d399;
+    --brand-wash: #0f2a2a;
+    --gain: #34d399;
+    --gain-wash: #0f2a20;
+    --loss: #fb923c;
+    --loss-strong: #f87171;
+    --loss-wash: #331a14;
+    --pred: #fbbf24;
+    --pred-wash: #2d2410;
+    --sim: #a78bfa;
+    --sim-wash: #221a3d;
+    --est: #60a5fa;
+    --est-wash: #13223d;
+    --focus: #2dd4bf;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px rgb(0 0 0 / 0.25);
+    --shadow-lg: 0 2px 4px rgb(0 0 0 / 0.3), 0 12px 32px rgb(0 0 0 / 0.4);
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+  --color-brand-wash: var(--brand-wash);
+  --color-gain: var(--gain);
+  --color-gain-wash: var(--gain-wash);
+  --color-loss: var(--loss);
+  --color-loss-strong: var(--loss-strong);
+  --color-loss-wash: var(--loss-wash);
+  --color-pred: var(--pred);
+  --color-pred-wash: var(--pred-wash);
+  --color-sim: var(--sim);
+  --color-sim-wash: var(--sim-wash);
+  --color-est: var(--est);
+  --color-est-wash: var(--est-wash);
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Menlo, Consolas, monospace;
+  --shadow-card: var(--shadow);
+  --shadow-lift: var(--shadow-lg);
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-rule bg-surface shadow-card;
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 dark:text-slate-900;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-rule-strong bg-surface px-3.5 py-2 text-sm font-semibold text-ink transition hover:border-brand hover:text-brand active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-rule-strong bg-surface px-3.5 py-2 text-sm font-semibold text-loss-strong transition hover:border-loss-strong active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-sim {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-sim px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 dark:text-slate-900;
+  }
+  .field {
+    @apply w-full rounded-xl border border-rule-strong bg-surface px-3 py-2 text-sm text-ink tabular-nums transition placeholder:text-ink-3 focus:border-brand focus:ring-4 focus:ring-brand/15 focus:outline-none;
+  }
+  .link {
+    @apply font-semibold text-brand underline decoration-brand/30 decoration-2 underline-offset-[3px] hover:decoration-brand;
+  }
+  .label {
+    @apply text-[13px] text-ink-3;
+  }
+  .figure {
+    @apply font-bold tracking-tight tabular-nums;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .hero {
+    background:
+      radial-gradient(1200px 300px at 100% 0%, rgb(34 211 238 / 0.35), transparent 60%),
+      radial-gradient(800px 300px at 0% 100%, rgb(16 185 129 / 0.35), transparent 60%),
+      linear-gradient(135deg, #0f766e 0%, #0d9488 45%, #059669 100%);
+  }
+  .hero-sim {
+    background:
+      radial-gradient(900px 260px at 100% 0%, rgb(236 72 153 / 0.25), transparent 60%),
+      linear-gradient(135deg, #5b21b6 0%, #6d28d9 50%, #7c3aed 100%);
+  }
+  /* Hatched edge for simulated numbers: a pattern, so the meaning does not rely on colour. */
+  .kind-hatch {
+    border-image: repeating-linear-gradient(45deg, var(--sim) 0 3px, transparent 3px 6px) 1;
+  }
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+::selection {
+  background: var(--brand-wash);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

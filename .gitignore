@@ -1,0 +1,46 @@
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+**/credentials*.json
+**/service-account*.json
+*.pem
+*.key
+
+# Logs (may contain request metadata)
+*.log
+logs/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+pgdata/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Generated synthetic data (regenerate with scripts/generate_dataset.py)
+data/synthetic/*.csv
+data/synthetic/manifest.json
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/

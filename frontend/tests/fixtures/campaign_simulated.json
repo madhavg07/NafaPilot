@@ -1,0 +1,193 @@
+{
+ "campaign_id": "c600f1be-aa4a-4adb-8d11-16b6e6bcf2fa",
+ "merchant_id": "M001",
+ "campaign_type": "targeted_offer",
+ "current_version": 1,
+ "approval_status": "approved",
+ "earlier_version_was_approved": false,
+ "permitted": true,
+ "executable": true,
+ "execution_status": "simulated",
+ "experiment_id": "fb08653f-5221-4203-bbd0-2cd080a97a42",
+ "result_kind": "prediction",
+ "data_source": "synthetic_csv",
+ "is_synthetic": true,
+ "created_at": "2026-10-29T16:40:05.422681",
+ "updated_at": "2026-10-29T16:51:06.507858",
+ "current": {
+  "version_id": "9778cbe9-b59e-443a-b78b-a3acf50e44c1",
+  "version": 1,
+  "is_current": true,
+  "input_hash": "8d4d3dcd90e1730b7a884f1a9ad602b15cba8080c3c6a141ef3d40a9946822a2",
+  "inputs": {
+   "campaign_ref": "run-candidate-A",
+   "campaign_type": "targeted_offer",
+   "average_order_value_inr": "200",
+   "variable_cost_per_order_inr": "110.0",
+   "discount_inr": "20",
+   "campaign_cost_inr": "1000",
+   "scenarios": {
+    "conservative": {
+     "incremental_orders": "30",
+     "existing_discounted_orders": "50"
+    },
+    "expected": {
+     "incremental_orders": "60",
+     "existing_discounted_orders": "40"
+    },
+    "optimistic": {
+     "incremental_orders": "90",
+     "existing_discounted_orders": "30"
+    }
+   },
+   "assumption_source": "llm_suggestion",
+   "is_synthetic": true
+  },
+  "assumption_source": "llm_suggestion",
+  "change_note": "Generated as option A in recommendation run.",
+  "created_by": "nafapilot:mock",
+  "created_at": "2026-10-29T16:40:05.423450",
+  "evaluation": {
+   "trigger": "decision_recorded",
+   "evaluated_at": "2026-10-29T16:51:04.416315",
+   "policy_version": 1,
+   "result_kind": "prediction",
+   "economics": {
+    "campaign_ref": "run-candidate-A",
+    "campaign_type": "targeted_offer",
+    "status": "ok",
+    "issues": [],
+    "input_hash": "8d4d3dcd90e1730b7a884f1a9ad602b15cba8080c3c6a141ef3d40a9946822a2",
+    "result_kind": "prediction",
+    "assumption_source": "llm_suggestion",
+    "is_synthetic": true,
+    "unit_margin_after_discount_inr": 70.0,
+    "discount_pct_of_aov": "10.0",
+    "scenarios": [
+     {
+      "scenario": "conservative",
+      "incremental_orders": 30.0,
+      "existing_discounted_orders": 50.0,
+      "incremental_net_revenue_inr": 4400.0,
+      "incremental_variable_cost_inr": 3300.0,
+      "campaign_cost_inr": 1000.0,
+      "incremental_contribution_profit_inr": 100.0,
+      "discount_cost_inr": 1600.0,
+      "break_even_incremental_orders": 29,
+      "explanation": [
+       "ΔR = 30 × (₹200 − ₹20) − 50 × ₹20 = ₹4,400",
+       "Variable cost of incremental orders = 30 × ₹110 = ₹3,300",
+       "ΔP = ₹4,400 − ₹3,300 − ₹1,000 = ₹100",
+       "Break-even: ceil((50 × ₹20 + ₹1,000) / ₹70) = 29 incremental orders"
+      ]
+     },
+     {
+      "scenario": "expected",
+      "incremental_orders": 60.0,
+      "existing_discounted_orders": 40.0,
+      "incremental_net_revenue_inr": 10000.0,
+      "incremental_variable_cost_inr": 6600.0,
+      "campaign_cost_inr": 1000.0,
+      "incremental_contribution_profit_inr": 2400.0,
+      "discount_cost_inr": 2000.0,
+      "break_even_incremental_orders": 26,
+      "explanation": [
+       "ΔR = 60 × (₹200 − ₹20) − 40 × ₹20 = ₹10,000",
+       "Variable cost of incremental orders = 60 × ₹110 = ₹6,600",
+       "ΔP = ₹10,000 − ₹6,600 − ₹1,000 = ₹2,400",
+       "Break-even: ceil((40 × ₹20 + ₹1,000) / ₹70) = 26 incremental orders"
+      ]
+     },
+     {
+      "scenario": "optimistic",
+      "incremental_orders": 90.0,
+      "existing_discounted_orders": 30.0,
+      "incremental_net_revenue_inr": 15600.0,
+      "incremental_variable_cost_inr": 9900.0,
+      "campaign_cost_inr": 1000.0,
+      "incremental_contribution_profit_inr": 4700.0,
+      "discount_cost_inr": 2400.0,
+      "break_even_incremental_orders": 23,
+      "explanation": [
+       "ΔR = 90 × (₹200 − ₹20) − 30 × ₹20 = ₹15,600",
+       "Variable cost of incremental orders = 90 × ₹110 = ₹9,900",
+       "ΔP = ₹15,600 − ₹9,900 − ₹1,000 = ₹4,700",
+       "Break-even: ceil((30 × ₹20 + ₹1,000) / ₹70) = 23 incremental orders"
+      ]
+     }
+    ],
+    "break_even_incremental_orders": 26,
+    "break_even_status": "reachable",
+    "accounting_note": "ΔR = I×(AOV−d) − S×d; ΔP = ΔR − I×VC − C. Incremental orders are counted at the discounted price; the discount on orders that would have happened anyway (S) is lost revenue; variable cost applies only to incremental orders; C is campaign cost other than the discount. The discount is counted once, inside ΔR. Results are predictions from assumed I and S, not observed or forecast outcomes."
+   },
+   "policy": {
+    "campaign_ref": "run-candidate-A",
+    "input_hash": "8d4d3dcd90e1730b7a884f1a9ad602b15cba8080c3c6a141ef3d40a9946822a2",
+    "policy_version": 1,
+    "risk_scenario": "conservative",
+    "rules": [
+     {
+      "rule_id": "valid_inputs",
+      "passed": true,
+      "blocks": "recommendation",
+      "reason": "All required inputs are present and valid.",
+      "observed": null,
+      "limit": null
+     },
+     {
+      "rule_id": "discount_cap",
+      "passed": true,
+      "blocks": "recommendation",
+      "reason": "Discount ₹20 is 10% of the order value, within the 15% cap.",
+      "observed": "10%",
+      "limit": "15%"
+     },
+     {
+      "rule_id": "min_post_discount_margin",
+      "passed": true,
+      "blocks": "recommendation",
+      "reason": "After the discount the customer pays ₹180; margin over variable cost is 38.89%, at or above the 25% minimum.",
+      "observed": "38.89%",
+      "limit": "25%"
+     },
+     {
+      "rule_id": "max_loss",
+      "passed": true,
+      "blocks": "recommendation",
+      "reason": "Conservative scenario profit is ₹100; the permitted loss is −₹1,000. Within the limit.",
+      "observed": "₹100",
+      "limit": "−₹1,000"
+     },
+     {
+      "rule_id": "campaign_budget",
+      "passed": true,
+      "blocks": "recommendation",
+      "reason": "Campaign cost ₹1,000 is within the ₹5,000 budget (discounts are counted in profit and the loss limit, not here).",
+      "observed": "₹1,000",
+      "limit": "₹5,000"
+     },
+     {
+      "rule_id": "merchant_approval",
+      "passed": true,
+      "blocks": "execution",
+      "reason": "Approved by merchant for these inputs.",
+      "observed": null,
+      "limit": null
+     }
+    ],
+    "permitted": true,
+    "executable": true,
+    "blocked_by": [],
+    "decided_by": "deterministic_policy_engine"
+   }
+  },
+  "decision": {
+   "decision": "approved",
+   "input_hash": "8d4d3dcd90e1730b7a884f1a9ad602b15cba8080c3c6a141ef3d40a9946822a2",
+   "decided_by": "merchant",
+   "reason": null,
+   "decided_at": "2026-10-29T16:51:04.414410"
+  }
+ },
+ "notice": "Synthetic prototype data. The approved version was executed in SIMULATION only: no offer was sent and no real system was contacted. Predictions and simulated measurements are reported separately on the experiment."
+}
